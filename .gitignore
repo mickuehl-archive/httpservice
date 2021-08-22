@@ -4,10 +4,16 @@
 *.dll
 *.so
 *.dylib
+main
+svc
 
 # Test binary, built with `go test -c`
 *.test
 coverage.txt
+**/data/**
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+# Other unwanted files
+.DS_Store
