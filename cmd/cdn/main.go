@@ -5,7 +5,7 @@ import (
 
 	// plug in Caddy modules here
 	_ "github.com/caddyserver/caddy/v2/modules/standard"
-	_ "github.com/txsvc/httpservice/internal/cdn/modules"
+	//_ "github.com/txsvc/httpservice/internal/cdn/modules"
 )
 
 /*

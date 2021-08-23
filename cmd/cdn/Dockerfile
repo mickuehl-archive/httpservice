@@ -1,9 +1,6 @@
 FROM registry.access.redhat.com/ubi8-minimal
 
-ENV BUILD_NAME svc
-ENV PROJECT_ID podops
-ENV GOOGLE_APPLICATION_CREDENTIALS /config/credentials.json
-
+ENV SERVICE_NAME svc
 ENV CADDYFILE /config/caddy/Caddyfile
 
 EXPOSE 80
@@ -27,9 +24,9 @@ VOLUME /config
 VOLUME /data
 
 # copy the binary
-COPY $BUILD_NAME /usr/bin/$BUILD_NAME
+COPY $SERVICE_NAME /usr/bin/$SERVICE_NAME
 
 # make it executable
-RUN chmod +x /usr/bin/$BUILD_NAME
+RUN chmod +x /usr/bin/$SERVICE_NAME
 
 CMD ["/root/usr/bin/run"]

@@ -1,5 +1,5 @@
 TARGET_LINUX = GOARCH=amd64 GOOS=linux
-CONTAINER_REGISTRY = eu.gcr.io/podops
+CONTAINER_REGISTRY = eu.gcr.io/txsvc-dev
 
 .PHONY: all
 all: test
