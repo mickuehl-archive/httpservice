@@ -60,12 +60,11 @@ func (s *server) Stop() {
 	// all the implementation specific shoutdown code to clean-up
 	s.shutdown(s.mux)
 
-	ctx, cancel := context.WithTimeout(context.Background(), ShutdownDelay*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), ShutdownDelay*time.Second) // FIXME make the delay configurable
 	defer cancel()
 	if err := s.mux.Shutdown(ctx); err != nil {
 		s.mux.Logger.Fatal(err)
 	}
-
 }
 
 // StartBlocking starts a new server in the main process

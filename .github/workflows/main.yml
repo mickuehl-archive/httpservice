@@ -2,7 +2,7 @@ name: build_container
 
 on:
   push:
-    branches: [ main ]
+    branches: [ release ]
 
 env:
   IMAGE_NAME: cdn
@@ -22,6 +22,16 @@ jobs:
         go-version: ^1.15
       id: go
 
+    - name: setup gcloud
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        service_account_email: ${{ secrets.GCP_EMAIL }}
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        export_default_credentials: true
+
+    - name: authenticate gcloud
+      run: gcloud auth configure-docker
+    
     - name: checkout code
       uses: actions/checkout@v2
 
@@ -31,17 +41,7 @@ jobs:
     - name: build code
       run: |
         cd cmd/cdn
-        GOOS=linux GOARCH=amd64 go build -o svc main.go && chmod +x svc
-
-    - name: setup gcloud
-      uses: google-github-actions/setup-gcloud@master
-      with:
-        service_account_email: ${{ secrets.GCP_EMAIL }}
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
-        export_default_credentials: true
-
-    # Configure docker to use the gcloud command-line tool as a credential helper
-    - run: gcloud auth configure-docker    
+        GOOS=linux GOARCH=amd64 go build -o svc main.go && chmod +x svc    
 
     - name: build container
       run: |

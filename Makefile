@@ -19,3 +19,7 @@ build_test:
 .PHONY: build_cdn
 build_cdn:
 	cd cmd/cdn && ${TARGET_LINUX} go build -o svc main.go && docker build -t ${CONTAINER_REGISTRY}/cdn . && docker push ${CONTAINER_REGISTRY}/cdn
+
+.PHONY: example_api_gcp
+example_api:
+	cd examples/api && gcloud app deploy . --quiet
