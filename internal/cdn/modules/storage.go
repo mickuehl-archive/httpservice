@@ -10,7 +10,7 @@ import (
 	"github.com/caddyserver/caddy/v2/caddyconfig/httpcaddyfile"
 	"github.com/caddyserver/caddy/v2/modules/caddyhttp"
 
-	"github.com/txsvc/stdlib/pkg/observer"
+	"github.com/txsvc/stdlib/observer"
 )
 
 type (

@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/txsvc/stdlib/pkg/observer"
+	"github.com/txsvc/stdlib/observer"
 )
 
 type (

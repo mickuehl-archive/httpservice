@@ -1,6 +1,6 @@
 localhost {
 	encode zstd gzip
-	root * ../public
+	root * ./data/public
 
 	rewrite /s/* s/_id.html
 	rewrite /e/* e/_id.html
@@ -9,7 +9,6 @@ localhost {
 	reverse_proxy /c/* localhost:8080
 	
 	route {
-		cdn_storage
 		file_server
 	}
 	
