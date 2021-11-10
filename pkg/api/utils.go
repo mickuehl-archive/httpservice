@@ -1,11 +1,14 @@
 package api
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"mime"
 	"net/http"
+
+	"github.com/txsvc/stdlib/observer"
 )
 
 // UnmashalJSONResponse unmarshalls a generic HTTP response body into a JSON structure
@@ -39,4 +42,8 @@ func UnmashalJSONResponse(resp *http.Response, v interface{}, b *[]byte) error {
 		return fmt.Errorf("got Content-Type = application/json, but could not unmarshal as JSON: %v", err)
 	}
 	return fmt.Errorf("expected Content-Type = application/json, got %q: %v", ct, err)
+}
+
+func LogHttpRequest(ctx context.Context, req *http.Request) {
+	observer.LogWithLevel(observer.LevelInfo, req.RequestURI, "user-agent", req.UserAgent())
 }
