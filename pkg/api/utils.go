@@ -7,8 +7,6 @@ import (
 	"io/ioutil"
 	"mime"
 	"net/http"
-
-	"github.com/txsvc/stdlib/observer"
 )
 
 // UnmashalJSONResponse unmarshalls a generic HTTP response body into a JSON structure
@@ -45,5 +43,5 @@ func UnmashalJSONResponse(resp *http.Response, v interface{}, b *[]byte) error {
 }
 
 func LogHttpRequest(ctx context.Context, req *http.Request) {
-	observer.LogWithLevel(observer.LevelInfo, req.RequestURI, "user-agent", req.UserAgent())
+	// FIXME observer.LogWithLevel(observer.LevelInfo, req.RequestURI, "user-agent", req.UserAgent())
 }

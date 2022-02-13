@@ -8,7 +8,7 @@ import (
 
 	"github.com/txsvc/httpservice/pkg/api"
 	"github.com/txsvc/httpservice/pkg/httpserver"
-	"github.com/txsvc/stdlib/pkg/env"
+	"github.com/txsvc/stdlib/v2/env"
 )
 
 func setup() *echo.Echo {

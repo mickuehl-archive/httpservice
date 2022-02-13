@@ -1,7 +1,6 @@
 package modules
 
 import (
-	"context"
 	"net/http"
 	"strings"
 
@@ -9,8 +8,6 @@ import (
 	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
 	"github.com/caddyserver/caddy/v2/caddyconfig/httpcaddyfile"
 	"github.com/caddyserver/caddy/v2/modules/caddyhttp"
-
-	"github.com/txsvc/stdlib/observer"
 )
 
 type (
@@ -45,7 +42,7 @@ func (m StorageModuleImpl) ServeHTTP(w http.ResponseWriter, r *http.Request, nex
 		size := "0"
 
 		// track api access for billing etc
-		observer.Meter(context.TODO(), "cdn.storage", "production", prod, "user-agent", userAgent, "remote_addr", remoteAddr, "type", contentType, "range", contentRange, "name", asset, "size", size)
+		// FIXME observer.Meter(context.TODO(), "cdn.storage", "production", prod, "user-agent", userAgent, "remote_addr", remoteAddr, "type", contentType, "range", contentRange, "name", asset, "size", size)
 	}
 
 	//os.Stdout.Write([]byte(r.RequestURI + "\n"))

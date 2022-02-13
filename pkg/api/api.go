@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/txsvc/stdlib/observer"
 )
 
 type (
@@ -37,7 +36,7 @@ func ErrorResponse(c echo.Context, status int, err error) error {
 	var resp StatusObject
 
 	// send the error to the Error Reporting
-	observer.ReportError(err)
+	// FIXME observer.ReportError(err)
 
 	if err == nil {
 		resp = NewStatus(http.StatusInternalServerError, fmt.Sprintf("%d", status))

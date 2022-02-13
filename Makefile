@@ -12,8 +12,8 @@ test:
 test_coverage:
 	go test `go list ./...` -coverprofile=coverage.txt -covermode=atomic
 
-.PHONY: build_test
-build_test:
+.PHONY: test_build
+test_build:
 	cd cmd/cdn && go build main.go && rm main
 
 .PHONY: build_cdn
