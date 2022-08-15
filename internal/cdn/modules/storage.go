@@ -2,7 +2,6 @@ package modules
 
 import (
 	"net/http"
-	"strings"
 
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
@@ -30,22 +29,20 @@ func init() {
 
 func (m StorageModuleImpl) ServeHTTP(w http.ResponseWriter, r *http.Request, next caddyhttp.Handler) error {
 
-	parts := strings.Split(r.RequestURI, "/")
-	if len(parts) > 2 {
-		// this assumes r.RequestURI starts with a "/" e.g. "/16304cda8338/bc982aa5.mp3"
-		prod := parts[1]
-		asset := parts[2]
-		userAgent := r.UserAgent()
-		remoteAddr := r.RemoteAddr
-		contentType := "unknown"
-		contentRange := r.Header.Get("Range")
-		size := "0"
+	/*
+		parts := strings.Split(r.RequestURI, "/")
+		if len(parts) > 2 {
+			// this assumes r.RequestURI starts with a "/" e.g. "/16304cda8338/bc982aa5.mp3"
+			//prod := parts[1]
+			//asset := parts[2]
+			//userAgent := r.UserAgent()
+			//remoteAddr := r.RemoteAddr
+			//contentType := "unknown"
+			//contentRange := r.Header.Get("Range")
+			//size := "0"
+		}
+	*/
 
-		// track api access for billing etc
-		// FIXME observer.Meter(context.TODO(), "cdn.storage", "production", prod, "user-agent", userAgent, "remote_addr", remoteAddr, "type", contentType, "range", contentRange, "name", asset, "size", size)
-	}
-
-	//os.Stdout.Write([]byte(r.RequestURI + "\n"))
 	return next.ServeHTTP(w, r)
 }
 
